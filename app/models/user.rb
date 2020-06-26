@@ -4,6 +4,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :username, uniqueness: true, presence: true, format: { with: /\A[-_a-zA-Z0-9]+\Z/ }
-  validates :password, presence: true
+  validates :password_digest, presence: true
   validates :about, length: { maximum: 256 }
 end

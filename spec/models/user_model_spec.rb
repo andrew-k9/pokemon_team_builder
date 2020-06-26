@@ -38,7 +38,9 @@ RSpec.describe User, type: :model do
   end
 
   describe "associations" do
-    it "has many teams" do
+    it "has team association" do
+      red = create(:user_with_team)
+      expect(red.teams.first.name).to eq("Champion Team")
     end
   end
 end

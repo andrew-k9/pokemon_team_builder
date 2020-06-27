@@ -1,3 +1,4 @@
+require "pry"
 class Team < ApplicationRecord
   belongs_to :user
   has_many :pokemon_team_memberships
@@ -5,10 +6,13 @@ class Team < ApplicationRecord
 
   before_validation :generic_name
 
+  validates :name, presence: true
+
   # gives a generic name based on the number of teams
   # the user has already created
   # @return [String] fromatted string
   def generic_name
-    self.name ||= "#{user.name}'s' team ##{user.teams.length}"
+    user = User.find(user_id)
+    self.name = "#{user.name}'s' team ##{user.teams.length}" if name.blank?
   end
 end

@@ -122,8 +122,6 @@ FactoryBot.define do
     factory :pokemon_with_team do
       after(:create) do |pokemon|
         create(:team, pokemon: pokemon)
-        create(:team, pokemon: pokemon)
-        create(:team, pokemon: pokemon)
       end
     end
   end

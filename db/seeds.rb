@@ -1,7 +1,24 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# RUN `rails db:seed:from_pokemondb` to make valid data, otherwise will fail!!
+
+# Users
+red = User.create(name: "Red", username: "PkMn-trainer-red", password_digest: "pikachu_25", about: "...")
+cynthia = User.create(name: "Cynthia", username: "cynthia_001", password_digest: "garchomp_445", about: "You won't win")
+
+# Teams for the users
+red_team = Team.create(name: "My Champion Team", description: "...", user_id: red.id)
+cynthia_team = Team.create(name: "My Champion Team", description: "Just try and stop me", user_id: cynthia.id)
+
+# Associate pokemon to teams
+red_team.pokemons << Pokemon.find_by(original_id: 25)
+red_team.pokemons << Pokemon.find_by(original_id: 131)
+red_team.pokemons << Pokemon.find_by(original_id: 143)
+red_team.pokemons << Pokemon.find_by(original_id: 3)
+red_team.pokemons << Pokemon.find_by(original_id: 6)
+red_team.pokemons << Pokemon.find_by(original_id: 9)
+
+cynthia_team.pokemons << Pokemon.find_by(original_id: 442)
+cynthia_team.pokemons << Pokemon.find_by(original_id: 407)
+cynthia_team.pokemons << Pokemon.find_by(original_id: 468)
+cynthia_team.pokemons << Pokemon.find_by(original_id: 448)
+cynthia_team.pokemons << Pokemon.find_by(original_id: 350)
+cynthia_team.pokemons << Pokemon.find_by(original_id: 445)

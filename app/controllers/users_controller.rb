@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   def update; end
 
   def create
-    # "user"=>{"username"=>"Ash Ketchum", "password"=>"2501", "password_confirmation"=>"2501", "about"=>"I will be the pokemon master!"}
+    # "user"=>{"username"=>"Ash Ketchum",
+    # "password"=>"2501", "password_confirmation"=>"2501", "about"=>"I will be the pokemon master!"}
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id

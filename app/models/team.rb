@@ -1,10 +1,11 @@
-require "pry"
 class Team < ApplicationRecord
   belongs_to :user
   has_many :pokemon_team_memberships
   has_many :pokemons, through: :pokemon_team_memberships
 
   before_validation :generic_name
+
+  accepts_nested_attributes_for :pokemons
 
   validates :name, presence: true
 

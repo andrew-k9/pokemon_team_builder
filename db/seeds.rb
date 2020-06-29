@@ -1,5 +1,8 @@
 # RUN `rails db:seed:from_pokemondb` to make valid data, otherwise will fail!!
 
+User.destroy_all
+Team.destroy_all
+PokemonTeamMembership.destroy_all
 # Users
 red = User.create(name: "Red", username: "PkMn-trainer-red", password: "pikachu_25", about: "...")
 cynthia = User.create(name: "Cynthia", username: "cynthia_001", password: "garchomp_445", about: "You won't win")

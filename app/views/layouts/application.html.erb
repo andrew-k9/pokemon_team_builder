@@ -17,5 +17,6 @@
       <div class="alert"><%= flash[:notice] %></div>
     <% end %>
     <%= yield %>
+    <%= button_to "Logout", sessions_path, method: :delete unless session[:user_id].blank?%></br>
   </body>
 </html>

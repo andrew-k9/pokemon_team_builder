@@ -14,6 +14,6 @@ class Team < ApplicationRecord
   # @return [String] fromatted string
   def generic_name
     user = User.find(user_id)
-    self.name = "#{user.name}'s' team ##{user.teams.length}" if name.blank?
+    self.name = "#{user.name}'s team ##{user.teams.length}" if name.blank?
   end
 end

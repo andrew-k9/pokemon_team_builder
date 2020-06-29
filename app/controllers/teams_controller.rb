@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   include ApplicationHelper
+
   before_action :require_login
   skip_before_action :require_login, only: %i[index show]
 
@@ -49,7 +50,10 @@ class TeamsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    Team.find(params[:id]).destroy
+    redirect_to user_path(User.find(params[:user_id]))
+  end
 
 private
 

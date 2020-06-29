@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   def index
-    @teams = Pokemon.all
+    @teams = Team.all
   end
 
   def show

@@ -1,9 +1,15 @@
 <h1>Teams</h1>
 <table>
   <tr>
-    <th>Name</th>
+    <th>Team Name</th>
+    <th>Trainer</th>
+    <th>Pokemon</th>
   </tr>
+  <% @teams.each do |team| %>
+    <tr>
+      <td><%=link_to team.name, team_path(team)%></td>
+      <td><%=team.user.name%></td>
+      <td><%=team.pokemons.map(&:name).join(", ")%>
+    </tr>
+  <% end %>
 </table>
-<% teams.each do |team| %>
-
-<% end %>

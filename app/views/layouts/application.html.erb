@@ -10,6 +10,13 @@
   </head>
 
   <body>
+    <% if flash[:alert] %>
+      <div class="alert"><%= flash[:alert] %></div>
+    <% end %>
+    <% if flash[:notice] %>
+      <div class="alert"><%= flash[:notice] %></div>
+    <% end %>
     <%= yield %>
+    <%= button_to "Logout", sessions_path, method: :delete unless session[:user_id].blank?%></br>
   </body>
 </html>

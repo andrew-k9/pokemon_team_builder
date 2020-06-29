@@ -8,3 +8,4 @@
 
 <h2>Pokemon:</h2>
 <%= render partial: "pokemons/stats", locals: {pokemons: @pokemons, general_info: true} %>
+<%= button_to "Edit Team", edit_user_team_path(@user, @team) , method: :get if logged_in?(@user)%></br>

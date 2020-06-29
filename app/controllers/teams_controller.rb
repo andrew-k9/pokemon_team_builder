@@ -25,16 +25,28 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
     @team.user = User.find(params[:user_id])
     if @team.save
+      flash.notice = "Successfully created team!"
       redirect_to team_path(@team)
     else
       render :new
     end
   end
 
+  def edit
+    @team = Team.find(params[:id])
+    @user = User.find(params[:user_id])
+    @pokemons = Pokemon.all
+  end
+
   def update
     params[:team][:pokemon_ids].delete ""
-    @team = Team.new(team_params)
-    @team.user = User.find(params[:user_id])
+    @team = Team.find(params[:id])
+    if @team.update(team_params)
+      flash.notice = "Successfully updated!"
+      redirect_to team_path(@team)
+    else
+      render :update
+    end
   end
 
   def destroy; end

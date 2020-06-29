@@ -1,0 +1,33 @@
+<table>
+  <tr>
+    <% if general_info %>
+      <th>Name</th>
+      <th>Primary Type</th>
+      <th>Secondary Type</th>
+    <% end %>
+    <th>Total</th>
+    <th>Attack</th>
+    <th>Defense</th>
+    <th>Special Attack</th>
+    <th>Special Defense</th>
+    <th>Speed</th>
+  </tr>
+  <% pokemons.each do |pokemon| %>
+    <tr>
+      <%if general_info%>
+        <td>
+          <%=link_to pokemon.name, pokemon_path(pokemon)%>
+          <img src=<%=pokemon.img_link%> alt=<%=pokemon.name%> width="50" height="50">
+        </td>
+        <td><%=pokemon.type_1%></td>
+        <td><%=pokemon.type_2 || ""%></td>
+      <% end %>
+      <td><%=pokemon.total%></td>
+      <td><%=pokemon.attack%></td>
+      <td><%=pokemon.defense%></td>
+      <td><%=pokemon.sp_attack%></td>
+      <td><%=pokemon.sp_defense%></td>
+      <td><%=pokemon.speed%></td>
+    </tr>
+  <% end %>
+</table>

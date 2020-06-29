@@ -1,0 +1,10 @@
+<h1><%= @team.name %></h1>
+<h2>Team Info:</h2>
+
+<p>
+  <strong>Trainer:</strong> <%= @user.username%></br>
+  <strong>Description:</strong> <%= @team.description%>
+</p>
+
+<h2>Pokemon:</h2>
+<%= render partial: "pokemons/stats", locals: {pokemons: @pokemons, general_info: true} %>

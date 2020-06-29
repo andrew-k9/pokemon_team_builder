@@ -1,0 +1,21 @@
+<h1><%= @pokemon.name %></h1>
+
+<img
+  src=<%=@pokemon.img_link%>
+  alt=<%=@pokemon.name%>
+  width="100" height="100"
+>
+<h2>Pokemon Info:</h2>
+
+<p>
+  <strong>Name:</strong> <%=@pokemon.name%></br>
+  <strong>Primary Type: </strong><%=@pokemon.type_1%></br>
+  <% unless @pokemon.type_2.blank? %>
+    <strong>Secondary Type: </strong> <%=@pokemon.type_2%></br>
+  <% end %>
+</p>
+
+<h3>Stats</h3>
+<%= render partial: "stats", locals: {pokemons: [@pokemon], general_info: false} %>
+
+<p><%= @pokemon.name%> is used on <%= "#{@pokemon.teams.count} different team#{@pokemon.teams.count > 1 ? "s" : ""}"%></p>

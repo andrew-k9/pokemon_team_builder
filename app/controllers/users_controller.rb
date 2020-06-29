@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-  def show; end
+  def show
+    @user = User.find(session[:user_id])
+    @teams = @user.teams
+  end
 
   def new; end
 

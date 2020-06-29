@@ -1,8 +1,8 @@
 # RUN `rails db:seed:from_pokemondb` to make valid data, otherwise will fail!!
 
 # Users
-red = User.create(name: "Red", username: "PkMn-trainer-red", password_digest: "pikachu_25", about: "...")
-cynthia = User.create(name: "Cynthia", username: "cynthia_001", password_digest: "garchomp_445", about: "You won't win")
+red = User.create(name: "Red", username: "PkMn-trainer-red", password: "pikachu_25", about: "...")
+cynthia = User.create(name: "Cynthia", username: "cynthia_001", password: "garchomp_445", about: "You won't win")
 
 # Teams for the users
 red_team = Team.create(name: "My Champion Team", description: "...", user_id: red.id)

@@ -1,0 +1,8 @@
+<%= form_for [user, team], url: url, method: method do |f|%>
+  <%= f.label "Team name"%></br>
+  <%= f.text_field :name %></br>
+  <%= f.label "Description"%></br>
+  <%= f.text_field :description %></br>
+  <%= f.collection_check_boxes :pokemon_ids, pokemons, :id, :name%></br>
+  <%= f.submit "Add team"%>
+<% end %>

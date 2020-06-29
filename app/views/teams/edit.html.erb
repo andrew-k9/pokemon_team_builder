@@ -1,0 +1,9 @@
+<h1>Update a Team</h1>
+<%= render partial: "error", locals: { team: @team } %>
+<%= render partial: "form", locals: {
+  user: @user,
+  team: @team,
+  pokemons: @pokemons,
+  url: user_team_url(@user, @team),
+  method: "PATCH",
+  } %>

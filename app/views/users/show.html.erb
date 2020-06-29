@@ -13,3 +13,5 @@
     <li><%=link_to team.name, team_path(team)%> </li>
   <% end %>
 </ul>
+
+<%= button_to "Create New Team", new_user_team_path(@user), method: :get if logged_in?(@user)%></br>

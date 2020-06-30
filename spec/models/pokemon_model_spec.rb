@@ -44,7 +44,7 @@ RSpec.describe Pokemon, type: :model do
   describe "scopes" do
     it "has the right gen 1 result" do
       pokemon1 = create(:pokemon)
-      expect(Pokemon.gen_1.first).to eq()
+      expect(Pokemon.gen_1.first.name).to eq("Venusaur")
     end
   end
 end

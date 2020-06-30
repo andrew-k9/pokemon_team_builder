@@ -39,4 +39,12 @@ RSpec.describe Pokemon, type: :model do
       expect(bulb.teams.count).to eq(2)
     end
   end
+
+  # TODO: Why does scope fail here and not in the console???
+  describe "scopes" do
+    it "has the right gen 1 result" do
+      pokemon1 = create(:pokemon)
+      expect(Pokemon.gen_1.first).to eq()
+    end
+  end
 end

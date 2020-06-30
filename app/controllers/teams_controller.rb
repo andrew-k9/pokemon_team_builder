@@ -2,14 +2,15 @@ class TeamsController < ApplicationController
   include ApplicationHelper
 
   before_action :require_login
+  before_action :find_team_by_id
   skip_before_action :require_login, only: %i[index show]
+  skip_before_action :find_team_by_id, only: %i[index new trainer_teams create]
 
   def index
     @teams = Team.all
   end
 
   def show
-    @team = Team.find(params[:id])
     @user = User.find(@team.user_id)
     @pokemons = @team.pokemons
   end
@@ -24,32 +25,31 @@ class TeamsController < ApplicationController
     # "team"=>{"name"=>"", "description"=>"", "pokemon_ids"=>["", "33", "125", "529", "951"]}
     @user = User.find(params[:user_id])
     @team = Team.new(team_params)
-    if team_has_right_number? && @team.save
+    if @team.save
       successfull_redirect(@team, "created team")
     else
       @pokemons = Pokemon.all
-      @team.errors.add(:pokemon, "Count of #{params[:team][:pokemon_ids].count} must be greater than 0 at most 6!")
       render :new
     end
   end
 
   def edit
-    @team = Team.find(params[:id])
-    @user = User.find(params[:user_id])
+    @user = User.find(@team.user.id)
     @pokemons = Pokemon.all
   end
 
   def update
-    @team = Team.find(params[:id])
     if @team.update(team_params)
       successfull_redirect(@team, "updated")
     else
-      render :update
+      @user = @team.user
+      @pokemons = Pokemon.all
+      render :edit
     end
   end
 
   def destroy
-    Team.find(params[:id]).destroy
+    @team.destroy
     redirect_to user_trainer_teams_path(User.find(params[:user_id]))
   end
 
@@ -74,8 +74,7 @@ private
     redirect_to user_trainer_teams_path(team.user)
   end
 
-  def team_has_right_number?
-    count = params[:team][:pokemon_ids].count
-    count.positive? && count < 7
+  def find_team_by_id
+    @team = Team.find(params[:id])
   end
 end

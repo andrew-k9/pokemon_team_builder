@@ -13,6 +13,6 @@ class PokemonsController < ApplicationController
 private
 
   def gen_params
-   params.require(:gen).permit(:gen_id)
+    params.require(:gen).permit(:gen_id)
   end
 end

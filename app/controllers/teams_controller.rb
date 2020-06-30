@@ -22,13 +22,13 @@ class TeamsController < ApplicationController
 
   def create
     # "team"=>{"name"=>"", "description"=>"", "pokemon_ids"=>["", "33", "125", "529", "951"]}
-    params[:team][:pokemon_ids].delete ""
+    @user = User.find(params[:user_id])
     @team = Team.new(team_params)
-    @team.user = User.find(params[:user_id])
-    if @team.save
-      flash.notice = "Successfully created team!"
-      redirect_to team_path(@team)
+    if team_has_right_number? && @team.save
+      successfull_redirect(@team, "created team")
     else
+      @pokemons = Pokemon.all
+      @team.errors.add(:pokemon, "Count of #{params[:team][:pokemon_ids].count} must be greater than 0 at most 6!")
       render :new
     end
   end
@@ -40,11 +40,9 @@ class TeamsController < ApplicationController
   end
 
   def update
-    params[:team][:pokemon_ids].delete ""
     @team = Team.find(params[:id])
     if @team.update(team_params)
-      flash.notice = "Successfully updated!"
-      redirect_to team_path(@team)
+      successfull_redirect(@team, "updated")
     else
       render :update
     end
@@ -52,16 +50,32 @@ class TeamsController < ApplicationController
 
   def destroy
     Team.find(params[:id]).destroy
-    redirect_to user_path(User.find(params[:user_id]))
+    redirect_to user_trainer_teams_path(User.find(params[:user_id]))
+  end
+
+  def trainer_teams
+    @user = User.find(params[:user_id])
+    @teams = @user.teams
   end
 
 private
 
   def team_params
+    params[:team][:pokemon_ids].delete ""
     params.require(:team).permit(:name, :user_id, :description, pokemon_ids: [])
   end
 
   def require_login
     logged_in?(User.find_by(id: params[:user_id]))
+  end
+
+  def successfull_redirect(team, type)
+    flash.notice = "Successfully #{type}!"
+    redirect_to user_trainer_teams_path(team.user)
+  end
+
+  def team_has_right_number?
+    count = params[:team][:pokemon_ids].count
+    count.positive? && count < 7
   end
 end

@@ -12,6 +12,7 @@ FactoryBot.define do
     sp_attack 65
     sp_defense 65
     speed 45
+    generation 1
     factory :pokemon_with_team do
       after(:create) do |pokemon|
         create(:team, pokemon: pokemon)

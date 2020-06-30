@@ -40,11 +40,10 @@ RSpec.describe Pokemon, type: :model do
     end
   end
 
-  # TODO: Why does scope fail here and not in the console???
   describe "scopes" do
     it "has the right gen 1 result" do
       pokemon1 = create(:pokemon)
-      expect(Pokemon.gen_1.first.name).to eq("Venusaur")
+      expect(Pokemon.gen_search(1).first.name).to eq("Venusaur")
     end
   end
 end

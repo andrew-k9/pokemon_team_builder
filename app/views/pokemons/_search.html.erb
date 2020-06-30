@@ -1,0 +1,5 @@
+<%= form_with(url: pokemon_search_url, method: "get") do%>
+  <%= label_tag(:search, "Select Gen:") %></br>
+  <%= collection_select(:gen, :gen_id, gens, :id, :name)%>
+  <%= submit_tag("Search")%>
+<% end %></br>

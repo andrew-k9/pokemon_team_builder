@@ -1,4 +1,4 @@
-<table>
+<table class="stats-table">
   <tr>
     <% if general_info %>
       <th>Name</th>
@@ -13,7 +13,7 @@
     <th>Speed</th>
   </tr>
   <% pokemons.each do |pokemon| %>
-    <tr>
+    <tr class="pokemon-row">
       <%if general_info%>
         <td>
           <%=link_to pokemon.name, pokemon_path(pokemon)%>

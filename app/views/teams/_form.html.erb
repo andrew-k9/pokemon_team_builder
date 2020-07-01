@@ -4,7 +4,7 @@
   <%= f.text_field :name %></br>
   <%= f.label "Description"%></br>
   <%= f.text_field :description %></br>
-  <%# TODO: How do I make this better? collection_select not working how I want (last selected is pokemon_id) %>
+  <%# TODO: How do I make this better? collection_select not working how I want (last selected is pokemon_id ) %>
   <%= f.collection_check_boxes :pokemon_ids, pokemons, :id, :name%></br>
   <%= f.submit "Submit team"%>
 <% end %>

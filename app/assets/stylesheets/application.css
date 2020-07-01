@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+ #pokemon-form-text-field {
+  display: inline-block;
+  float: left;
+ }
+
+ .pokemon-select {
+  display: inline-block;
+  width: 75%;
+}
+
+.pokemon-select-box {
+  float: left;
+  width: 200px;
+  height: 100px;
+  margin: 1em;
+}

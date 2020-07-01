@@ -61,7 +61,7 @@ class TeamsController < ApplicationController
 private
 
   def team_params
-    params[:team][:pokemon_ids].delete ""
+    params[:team][:pokemon_ids].delete "" if params[:team].key?(:pokemon_ids)
     params.require(:team).permit(:name, :user_id, :description, pokemon_ids: [])
   end
 

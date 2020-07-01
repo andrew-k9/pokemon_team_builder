@@ -1,8 +1,29 @@
 <%= form_for [user, team], url: url, method: method do |f|%>
-  <%= f.label "Team name"%></br>
-  <%= f.text_field :name %></br>
-  <%= f.label "Description"%></br>
-  <%= f.text_field :description %></br>
-  <%= f.collection_check_boxes :pokemon_ids, pokemons, :id, :name%></br>
-  <%= f.submit "Add team"%>
+  <div id="pokemon-form-text-field">
+    <%= f.hidden_field :user_id, value: user.id%>
+    <%= f.label "Team name"%></br>
+    <%= f.text_field :name %></br>
+    <%= f.label "Description"%></br>
+    <%= f.text_field :description %></br>
+    <%= f.submit "Submit team"%>
+  </div>
+  <%# TODO: How do I make this better? collection_select not working how I want (last selected is pokemon_id ) %>
+  <%# <%= f.collection_check_boxes :pokemon_ids, pokemons, :id, :name%>
+  <div class="pokemon-select">
+    <% pokemons.each do |pokemon| %>
+      <div class="pokemon-select-box">
+        <input
+          type="checkbox"
+          value=<%=%"#{pokemon.id}"%>
+          name="team[pokemon_ids][]"
+          id=<%="team_pokemon_ids_#{pokemon.id}"%>
+          <%if team.pokemons.include?(pokemon) %>
+            checked
+          <% end %>
+        >
+        <img src=<%=pokemon.img_link%> alt=<%=pokemon.name%> width="50" height="50">
+        <label for=<%= "team_pokemon_ids_#{pokemon.id}"%>> <%= pokemon.name%> </label>
+      </div>
+    <% end %>
+  </div>
 <% end %>

@@ -1,6 +1,8 @@
-<%if team.errors.any? %>
-  <h2>Unable to save team!</h2>
-  <% @team.errors.messages.each do |key, value| %>
-    <%="#{key}: #{value}\n"%></br>
-  <% end %></br>
-<% end %>
+<div class="fields_with_errors">
+  <%if team.errors.any? %>
+    <h2>Unable to save team!</h2>
+    <% team.errors.messages.each do |key, value| %>
+      <%="#{key}: #{value}\n"%></br>
+    <% end %></br>
+  <% end %>
+</div>

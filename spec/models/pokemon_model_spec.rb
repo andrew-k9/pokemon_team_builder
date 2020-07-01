@@ -39,4 +39,11 @@ RSpec.describe Pokemon, type: :model do
       expect(bulb.teams.count).to eq(2)
     end
   end
+
+  describe "scopes" do
+    it "has the right gen 1 result" do
+      pokemon1 = create(:pokemon)
+      expect(Pokemon.gen_search(1).first.name).to eq("Venusaur")
+    end
+  end
 end

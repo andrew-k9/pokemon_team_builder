@@ -2,14 +2,15 @@ class TeamsController < ApplicationController
   include ApplicationHelper
 
   before_action :require_login
+  before_action :find_team_by_id
   skip_before_action :require_login, only: %i[index show]
+  skip_before_action :find_team_by_id, only: %i[index new trainer_teams create]
 
   def index
     @teams = Team.all
   end
 
   def show
-    @team = Team.find(params[:id])
     @user = User.find(@team.user_id)
     @pokemons = @team.pokemons
   end
@@ -22,46 +23,58 @@ class TeamsController < ApplicationController
 
   def create
     # "team"=>{"name"=>"", "description"=>"", "pokemon_ids"=>["", "33", "125", "529", "951"]}
-    params[:team][:pokemon_ids].delete ""
+    @user = User.find(params[:user_id])
     @team = Team.new(team_params)
-    @team.user = User.find(params[:user_id])
     if @team.save
-      flash.notice = "Successfully created team!"
-      redirect_to team_path(@team)
+      successfull_redirect(@team, "created team")
     else
+      @pokemons = Pokemon.all
       render :new
     end
   end
 
   def edit
-    @team = Team.find(params[:id])
-    @user = User.find(params[:user_id])
+    @user = User.find(@team.user.id)
     @pokemons = Pokemon.all
   end
 
   def update
-    params[:team][:pokemon_ids].delete ""
-    @team = Team.find(params[:id])
     if @team.update(team_params)
-      flash.notice = "Successfully updated!"
-      redirect_to team_path(@team)
+      successfull_redirect(@team, "updated")
     else
-      render :update
+      @user = @team.user
+      @pokemons = Pokemon.all
+      render :edit
     end
   end
 
   def destroy
-    Team.find(params[:id]).destroy
-    redirect_to user_path(User.find(params[:user_id]))
+    @team.destroy
+    redirect_to user_trainer_teams_path(User.find(params[:user_id]))
+  end
+
+  def trainer_teams
+    @user = User.find(params[:user_id])
+    @teams = @user.teams
   end
 
 private
 
   def team_params
+    params[:team][:pokemon_ids].delete "" if params[:team].key?(:pokemon_ids)
     params.require(:team).permit(:name, :user_id, :description, pokemon_ids: [])
   end
 
   def require_login
     logged_in?(User.find_by(id: params[:user_id]))
+  end
+
+  def successfull_redirect(team, type)
+    flash.notice = "Successfully #{type}!"
+    redirect_to user_trainer_teams_path(team.user)
+  end
+
+  def find_team_by_id
+    @team = Team.find(params[:id])
   end
 end

@@ -8,15 +8,23 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <% if flash[:alert] %>
-      <div class="alert"><%= flash[:alert] %></div>
-    <% end %>
-    <% if flash[:notice] %>
-      <div class="alert"><%= flash[:notice] %></div>
-    <% end %>
+    <div id="menu-bar">
+      <% if session[:user_id].blank? %>
+        <%= button_to "Login", sessions_path, method: :delete %>
+      <% else %>
+        <%= button_to "Logout", sessions_path, method: :delete %>
+        <%= button_to "Home", user_path(current_user), method: :get %>
+      <% end %>
+    </div>
+    <div id="flash-messages">
+      <% if flash[:alert] %>
+        <div class="alert"><%= flash[:alert] %></div>
+      <% end %>
+      <% if flash[:notice] %>
+        <div class="alert"><%= flash[:notice] %></div>
+      <% end %>
+    </div>
     <%= yield %>
-    <%= button_to "Logout", sessions_path, method: :delete unless session[:user_id].blank?%></br>
   </body>
 </html>

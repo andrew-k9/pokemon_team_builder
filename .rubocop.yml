@@ -13,6 +13,7 @@ AllCops:
     - 'config/**'
     - 'config/**/*'
     - 'bin/**'
+    - 'node_modules/**/*'
 
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent

@@ -1,12 +1,11 @@
 <h1><%= @team.name %></h1>
 <h2>Team Info:</h2>
 
-<p>
+<p id="text-info" class="p-3 mb-2 bg-secondary text-white rounded">
   <strong>Trainer:</strong> <%= @user.username%></br>
   <strong>Description:</strong> <%= @team.description%>
 </p>
 
 <h2>Pokemon:</h2>
 <%= render partial: "pokemons/stats", locals: {pokemons: @pokemons, general_info: true} %>
-<%= button_to "Edit Team", edit_user_team_path(@user, @team) , method: :get if logged_in?(@user)%>
-<%= button_to "Delete Team", user_team_path(@user, @team), method: :delete, data: { confirm: "Are you sure you want to delete #{@team.name}?" }if logged_in?(@user) %>
+<%= render partial: "bottom_buttons", locals: {user: @user, team: @team} %>

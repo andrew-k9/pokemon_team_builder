@@ -10,10 +10,58 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap
  *= require_tree .
  *= require_self
  */
 
+ /*
+   Global styles
+ */
+ body{
+   background-color: #484c52; 	/*#5c6169;*/
+   color: white;
+   font-family: 'Roboto', sans-serif;
+ }
+
+ #menu-bar > form {
+  display: inline-block;
+ }
+
+ a {
+   color: #069ac7;
+ }
+
+ ul {
+   margin: auto;
+   width: 33%
+ }
+
+ #text-info {
+  border: 10px;
+  width: 33%;
+  margin: auto;
+}
+
+ #yield-content {
+  text-align: center;
+ }
+
+ .bottom-button {
+   margin: 20px;
+ }
+
+ #flash-messages {
+   text-align: center;
+ }
+
+ /*
+   user show page
+ */
+
+ /*
+   Team create and edit styles
+ */
  #pokemon-form-text-field {
   display: inline-block;
   float: left;

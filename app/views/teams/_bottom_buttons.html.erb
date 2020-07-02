@@ -8,4 +8,8 @@
     method: :delete,
     data: { confirm: "Are you sure you want to delete #{team.name}?" },
     class: "btn btn-secondary" if logged_in?(user) %>
+  <%= button_to "View Team",
+    team_path(team),
+    method: :get,
+    class: "btn btn-secondary" if logged_in?(user) && request.env['PATH_INFO'] != "/teams/#{team.id}" %>
 </div>

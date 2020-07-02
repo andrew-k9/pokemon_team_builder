@@ -61,6 +61,7 @@ class TeamsController < ApplicationController
 private
 
   def team_params
+    # coming back with "" first in the `pokemon_ids` for whatever reason
     params[:team][:pokemon_ids].delete "" if params[:team].key?(:pokemon_ids)
     params.require(:team).permit(:name, :user_id, :description, pokemon_ids: [])
   end

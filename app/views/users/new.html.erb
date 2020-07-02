@@ -4,7 +4,7 @@
   <div class="field_with_errors">
     <h2>Unable to save user!</h2>
     <% @user.errors.messages.each do |key, value| %>
-      <%="#{key}: #{value}\n"%></br>
+      <%="#{key}: #{value.join(" and ")}!\n"%></br>
     <% end %></br>
   </div>
 <% end %>

@@ -12,7 +12,7 @@
   <body>
     <div id="menu-bar" class="btn-group btn-group-toggle" data-toggle="buttons">
       <% if session[:user_id].blank? %>
-        <%= button_to "Login Page", sessions_path, method: :delete, class: "btn btn-secondary" %>
+        <%= button_to "Login Page", login_path, method: :get, class: "btn btn-secondary" %>
       <% else %>
         <%= button_to "Logout", sessions_path, method: :delete, class: "btn btn-secondary" %>
         <%= button_to "Home", user_path(current_user), method: :get, class: "btn btn-secondary" %>

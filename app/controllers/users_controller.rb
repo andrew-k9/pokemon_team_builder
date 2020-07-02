@@ -8,8 +8,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def update; end
-
   def create
     # "user"=>{"username"=>"Ash Ketchum",
     # "password"=>"2501", "password_confirmation"=>"2501", "about"=>"I will be the pokemon master!"}
@@ -18,6 +16,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
+      # don't want to show `password_digest` to the user"
+      @user.errors.messages.delete :password_digest
       render :new
     end
   end

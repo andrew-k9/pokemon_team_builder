@@ -1,5 +1,5 @@
 <div id="login-form">
-  <%= form_with url: login_url, method: "post" do%>
+  <%= form_tag url: login_url, method: "post" do%>
     <div class="form-group p-3 mb-2 bg-secondary text-white">
       <%= label_tag :username, "Username:" %>
       <%= text_field_tag :username %></br>

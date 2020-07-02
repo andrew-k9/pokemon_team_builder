@@ -1,8 +1,9 @@
 class Pokemon < ApplicationRecord
   has_many :pokemon_team_memberships
   has_many :teams, through: :pokemon_team_memberships
+  belongs_to :generation
 
-  scope :gen_search, ->(gen_number) { where(generation: gen_number) }
+  scope :gen_search, ->(gen_number) { where(generation: Generation.find(gen_number)) }
 
   validates :name, presence: true
   validates :original_id, presence: true

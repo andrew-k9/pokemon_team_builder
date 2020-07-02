@@ -16,6 +16,8 @@
       <% else %>
         <%= button_to "Logout", sessions_path, method: :delete, class: "btn btn-secondary" %>
         <%= button_to "Home", user_path(current_user), method: :get, class: "btn btn-secondary" %>
+        <%= button_to "My Teams", user_trainer_teams_path(current_user), method: :get, class: "btn btn-secondary" %>
+        <%= button_to "All Pokemon", pokemons_path, method: :get, class: "btn btn-secondary" %>
       <% end %>
     </div>
     <div id="flash-messages" class="container">

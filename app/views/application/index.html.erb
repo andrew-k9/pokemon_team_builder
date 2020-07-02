@@ -1,6 +1,12 @@
 <h1>Hello, Trainer!</h1>
 <p>Welcome to the pokemon team building app!<p>
 <% if session[:user_id].blank?%>
-  <%= button_to "Click Here to Login", login_path, method: :get%></br>
-  <%= button_to "Click Here to Create an Account", new_user_path, method: :get%></br>
+  <%= button_to "Click Here to Login",
+    login_path,
+    method: :get,
+    class: "btn btn-secondary"%></br>
+  <%= button_to "Click Here to Create an Account",
+     new_user_path,
+     method: :get,
+     class: "btn btn-secondary"%></br>
 <% end %>

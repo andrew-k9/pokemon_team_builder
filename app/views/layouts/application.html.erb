@@ -7,24 +7,29 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="menu-bar">
+    <div id="menu-bar" class="btn-group btn-group-toggle" data-toggle="buttons">
       <% if session[:user_id].blank? %>
-        <%= button_to "Login", sessions_path, method: :delete %>
+        <%= button_to "Login Page", login_path, method: :get, class: "btn btn-secondary" %>
       <% else %>
-        <%= button_to "Logout", sessions_path, method: :delete %>
-        <%= button_to "Home", user_path(current_user), method: :get %>
+        <%= button_to "Logout", sessions_path, method: :delete, class: "btn btn-secondary" %>
+        <%= button_to "Home", user_path(current_user), method: :get, class: "btn btn-secondary" %>
+        <%= button_to "My Teams", user_trainer_teams_path(current_user), method: :get, class: "btn btn-secondary" %>
+        <%= button_to "All Pokemon", pokemons_path, method: :get, class: "btn btn-secondary" %>
       <% end %>
     </div>
-    <div id="flash-messages">
+    <div id="flash-messages" class="container">
       <% if flash[:alert] %>
-        <div class="alert"><%= flash[:alert] %></div>
+        <div class="field_with_errors"><%= flash[:alert] %></div>
       <% end %>
       <% if flash[:notice] %>
-        <div class="alert"><%= flash[:notice] %></div>
+        <div class="notice"><%= flash[:notice] %></div>
       <% end %>
     </div>
-    <%= yield %>
+    <div id="yield-content" class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

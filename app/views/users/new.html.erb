@@ -1,24 +1,38 @@
 <h1>Create Trainer Account</h1>
 
 <%if @user.errors.any? %>
-  <div class="fields_with_errors">
+  <div class="field_with_errors">
     <h2>Unable to save user!</h2>
     <% @user.errors.messages.each do |key, value| %>
-      <%="#{key}: #{value}\n"%></br>
+      <%="#{key}: #{value.join(" and ")}!\n"%></br>
     <% end %></br>
   </div>
 <% end %>
 
-<%= form_for @user do |f| %>
-  <%= f.label "Username:" %></br>
-  <%= f.text_field :username%></br>
-  <%= f.label "Password:" %></br>
-  <%= f.password_field :password%></br>
-  <%= f.label "Confirm Password:" %></br>
-  <%= f.password_field :password_confirmation%></br>
-  <%= f.label "Name (Doesn't have to be real):" %></br>
-  <%= f.text_field :name%></br>
-  <%= f.label "About you:" %></br>
-  <%= f.text_area :about%></br>
-  <%= f.submit "Create User"%>
-<% end %>
+<div id="new-user-form">
+  <%= form_for @user do |f| %>
+    <div class="form-group p-3 mb-2 bg-secondary text-white rounded">
+      <%= f.label "Username:" %></br>
+      <%= f.text_field :username%></br>
+    </div>
+    <div class="form-group p-3 mb-2 bg-secondary text-white rounded">
+      <%= f.label "Password:" %></br>
+      <%= f.password_field :password%></br>
+    </div>
+    <div class="form-group p-3 mb-2 bg-secondary text-white rounded">
+      <%= f.label "Confirm Password:" %></br>
+      <%= f.password_field :password_confirmation%></br>
+    </div>
+    <div class="form-group p-3 mb-2 bg-secondary text-white rounded">
+      <%= f.label "Name (Doesn't have to be real):" %></br>
+      <%= f.text_field :name%></br>
+    </div>
+    <div class="form-group p-3 mb-2 bg-secondary text-white rounded">
+      <%= f.label "About you:" %></br>
+      <%= f.text_area :about%></br>
+    </div>
+    <div class="form-group p-3 mb-2 bg-secondary text-white rounded">
+    <%= f.submit "Create User"%>
+    </div>
+  <% end %>
+</div>

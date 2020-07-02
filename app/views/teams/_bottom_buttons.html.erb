@@ -1,0 +1,15 @@
+<div id="menu-bar" class="btn-group btn-group-toggle" data-toggle="buttons">
+  <%= button_to "Edit Team",
+    edit_user_team_path(user, team),
+    method: :get,
+    class: "btn btn-secondary" if logged_in?(user)%>
+  <%= button_to "Delete Team",
+    user_team_path(user, team),
+    method: :delete,
+    data: { confirm: "Are you sure you want to delete #{team.name}?" },
+    class: "btn btn-secondary" if logged_in?(user) %>
+  <%= button_to "View Team",
+    team_path(team),
+    method: :get,
+    class: "btn btn-secondary" if logged_in?(user) && request.env['PATH_INFO'] != "/teams/#{team.id}" %>
+</div>

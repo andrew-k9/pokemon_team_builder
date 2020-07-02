@@ -10,8 +10,11 @@ namespace :db do
 
     desc "Add in Generation to pokemon"
     task add_generation: :environment do
+      Generation.destroy_all
+      8.times { |i| Generation.create!(id: i + 1, name: "Gen #{i + 1}") }
+      puts "Added #{Generation.all.length} generations!"
       Pokemon.all.each do |pokemon|
-        pokemon.update!(generation: gen_select(pokemon.original_id))
+        pokemon.update!(generation_id: gen_select(pokemon.original_id))
       end
     end
   end

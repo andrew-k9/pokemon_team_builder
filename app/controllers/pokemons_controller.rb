@@ -2,8 +2,7 @@ class PokemonsController < ApplicationController
   def index
     # "gen"=>{"gen_id"=>"3"}
     @pokemons = params.key?(:gen) ? Pokemon.gen_search(params[:gen][:gen_id]) : Pokemon.all
-    Gens.populate
-    @gens = Gens.all
+    @gens = Generation.all
   end
 
   def show
